@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Cart summary</h1>
+<div class="cart">
+    <div class="card-container">
+        {% for cartitem in cartitems %}
+        <div class="card">
+            <a href="{% url 'details' cartitem.product.id %}">
+                <img src="{{ cartitem.product.image.url }}" alt="" class="card-img">
+            </a>
+            <div class="card-text">
+                <h3 class="name">{{ cartitem.product.name }}</h3>
+                <div class="units">
+                    <button class="reduce" data-product = '{{ cartitem.product.id }}'>-</button>
+                    <span>{{ cartitem.units }}</span> units
+                    <button class="increase" data-product = '{{ cartitem.product.id }}'>+</button>
+                </div>
+                <h4 class="price">₦{{ cartitem.get_price }}</h4>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <h3>Total = <span class="total">{{ order.total }}</span></h3>
+    <a href="{% url 'delivery_info' %}">
+        <button class = 'proceed-btn'>Proceed to checkout</button>
+    </a>
+</div>
+{% endblock %}

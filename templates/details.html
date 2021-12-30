@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="details">
+    <div class="detail-grid">
+        <div class="product-gallery">
+            <img src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="purchase">
+            <p class="product-name">{{ product.name }}</p>
+            <p class="details-price">₦<span>{{ product.price }}</span>.00</p>
+            <button class = 'add-to-cart' data-product = '{{ product.id }}'>Add to cart</button>
+        </div>
+    </div>
+    <br>
+    <div class="product-description">
+        <h4>Product Description</h4>
+        {{ product.description }}
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  var user = '{{ request.user }}'
+  var csrfToken = '{{ csrf_token }}'
+  var addToCartUrl = "{% url 'add_to_cart' %}"
+</script>
+{% endblock %}

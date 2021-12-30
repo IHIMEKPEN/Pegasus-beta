@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="product-list">
+    {% for product in object_list %}
+    <div class="product-list-item">
+        <img src="{{ product.image.url }}" alt="">
+        <p class="product-name">{{ product.name }}</p>
+        <p>₦<span>{{ product.price }}</span>.00</p>
+        <a href="{% url 'product-edit' product.id %}"><button>edit</button></a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

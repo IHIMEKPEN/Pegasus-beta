@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+	{% for cartitem in order.cartitem_set.all %}
+		<h4>{{ cartitem.product.name }}</h4>
+		<span>{{ cartitem.units }} units</span>
+		<p>{{ order.status }}</p>
+	{% endfor %}
+	<br>
+	<form method="post">
+		{% csrf_token %}
+		<div>
+			{% for field in form %}
+        		<span>{{ field.error }}</span>
+        		<label> {{ field.label }}</label>
+        		{{ field }}
+			{% endfor %}
+		</div>
+		<button class="btn btn-success" type="submit">Update Status</button>
+	</form>
+{% endblock %}

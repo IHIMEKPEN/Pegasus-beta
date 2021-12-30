@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="product-list">
+    {% for product in object_list %}
+    <div class="product-list-item">
+        <a href="{% url 'details' product.id %}">
+            <div class="product-image">
+                <img src="{{ product.image.url }}" alt="">
+            </div>
+            <p class="product-name">{{ product.name }}</p>
+            <p class="produc-price">₦<span>{{ product.price }}</span>.00</p>
+        </a>
+        <span class="btn">
+            <button class = 'add-to-cart' data-product = '{{ product.id }}'>Add to cart</button>
+        </span>
+    </div>
+    {% endfor %}
+</div>
+<div>
+    {% if is_paginated %}
+    <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}"><button class="paginator-btn">&laquo;</button></a></li>
+    {% else %}
+      <li class="disabled"><button class="paginator-btn">&laquo;</button></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span><button class="paginator-btn-current">{{ i }}</button></li>
+      {% else %}
+        <li><a href="?page={{ i }}"><button class="paginator-btn">{{ i }}</button></a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}"><button class="paginator-btn">&raquo;</button></a></li>
+    {% else %}
+      <li class="disabled"><button class="paginator-btn">&raquo;</button></li>
+    {% endif %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

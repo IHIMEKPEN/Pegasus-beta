@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block body %}
+	<div class="notifications">
+		<div class="order-notification">
+			<a href="{% url 'pending-orders' %}">
+				<p>New Orders:</p>
+				<hr>
+				<h1>{{ pending_order_count }}</h1>
+			</a>
+		</div>
+	</div>
+	<div class="product-table">
+		<h3>Products</h3>
+		{% for product in object_list %}
+		<div class="product-table-item">
+			<img src="{{ product.image.url }}" alt="">
+			<span>{{ product.name }}</span>
+			<a href="{% url 'details' product.id %}"><button>View</button></a>
+			<a href="{% url 'product-edit' product.id %}"><button>edit</button></a>
+		</div>
+		{% endfor %}
+		<a href="{% url 'product-list' %}">More...</a>
+		<a href="{% url 'create-product' %}"><button>Add Product</button></a>
+	</div>
+	
+{% endblock %}

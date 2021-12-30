@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<h1>Cart summary</h1>
+<div class="cart">
+    <div class="card-container">
+        {% for cartitem in cartitems %}
+        <div class="card">
+            <img src="{{ cartitem.product.image.url }}" alt="" class="card-img">
+            <h3 class="name">{{ cartitem.product.name }}</h3>
+            <p class="units">{{ cartitem.units }} units</p>
+            <h4 class="price">₦{{ cartitem.get_price }}</h4>
+        </div>
+        {% endfor %}
+    </div>
+    <h3>Total = <span>{{ order.total }}</span></h3>
+    <button id="payButton" class = 'proceed-btn'>Pay</button>
+</div>
+<script  type="text/javascript" charset="utf-8">
+    var amount = "{{ order.total }}" *100
+    var firstname = "{{ order.customer.first_name }}"
+    var lastname = "{{ order.customer.last_name }}"
+    var email = "{{ order.customer.email }}"
+    var reference = "{{ order.transaction_id }}"
+    var paymentInitUrl = "{% url 'payment_init' %}"
+</script>
+<script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
+{% endblock %}

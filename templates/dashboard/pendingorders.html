@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block body %}
+	{% for order in pending_orders %}
+		<h2>{{ order.reference }}</h2>
+		<a href="{% url 'order-details' order.id %}"><button>Details</button></a>
+	{% endfor %}
+{% endblock %}
