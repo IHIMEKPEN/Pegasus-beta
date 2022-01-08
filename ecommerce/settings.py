@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'phonenumber_field',
+    # 'dashboard'
 ]
 
 MIDDLEWARE = [

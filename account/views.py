@@ -24,4 +24,4 @@ class SignupView(CreateView):
 		user.save()
 		Customer.objects.create(user=user)
 		# return HttpResponse('you can now login')
-		return redirect('product:home')
+		return redirect('home')
