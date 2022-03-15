@@ -10,8 +10,8 @@ import os
 
 
 
-# PAYSTACK_API_KEY = os.environ.get('PAYSTACK_API_KEY')
-PAYSTACK_API_KEY='sk_test_0158289ec20709947f87b5fcd317daa1579d46de'
+PAYSTACK_API_KEY = os.environ.get('PAYSTACK_API_KEY')
+#PAYSTACK_API_KEY='sk_test_0158289ec20709947f87b5fcd317daa1579d46de'
 
 HEADERS = {
     "Authorization": "Bearer "+ PAYSTACK_API_KEY,
